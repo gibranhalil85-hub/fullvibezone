@@ -236,7 +236,6 @@
     document.getElementById('videy-player').load();
     document.getElementById('btn-full').href = FULL_VERSION_URL;
 
-    // Transisi 1 detik, lalu munculkan halaman utama, muat iklan, dan aktifkan Histats asli
     function triggerLoading() {
       document.getElementById('btn-start').style.display = 'none';
       document.getElementById('loading-box').style.display = 'block';
@@ -245,14 +244,9 @@
         document.getElementById('screen-landing').classList.remove('active');
         document.getElementById('screen-main').classList.add('active');
 
-        // Muat Iklan
+        // Panggil skrip iklan secara dinamis saat halaman utama dibuka
         loadAdScript();
-        
-        // Panggil fungsi Histats asli yang ada di bawah
-        if (typeof runHistats === 'function') {
-          runHistats();
-        }
-      }, 1000); 
+      }, 2000); 
     }
 
     function loadAdScript() {
@@ -271,26 +265,18 @@
     }
   </script>
 
-  <!-- HISTATS TRACKING SCRIPT (Format Asli yang Dibungkus Fungsi) -->
+  <!-- HISTATS TRACKING SCRIPT (Standar Asli) -->
   <script type="text/javascript">
     //<![CDATA[
-    function runHistats() {
-      if (window._HistatsInitialized) return;
-      window._HistatsInitialized = true;
-
-      var _Hasync = _Hasync || [];
-      _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
-      _Hasync.push(['Histats.fasi', '1']);
-      _Hasync.push(['Histats.track_hits', '']);
-      
-      (function() {
-        var hs = document.createElement('script'); 
-        hs.type = 'text/javascript'; 
-        hs.async = true;
-        hs.src = ('//s10.histats.com/js15_as.js');
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-      })();
-    }
+    var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+      var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+      hs.src = ('//s10.histats.com/js15_as.js');
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();
     //]]>
   </script>
 </body>
