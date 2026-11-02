@@ -191,7 +191,7 @@
         <div class="brand-sub">watch trending viral video every day.</div>
       </div>
 
-      <!-- NATIVE BANNER (Slot Iklan Siap Disuntikkan Skrip) -->
+      <!-- NATIVE BANNER -->
       <div class="ads-card">
         <div class="ads-label">Recommended Videos</div>
         <div style="text-align:center;" id="ad-slot-1"></div>
@@ -236,7 +236,7 @@
     document.getElementById('videy-player').load();
     document.getElementById('btn-full').href = FULL_VERSION_URL;
 
-    // Transisi 1 detik, lalu munculkan halaman utama DAN muat iklannya secara benar
+    // Transisi 1 detik, lalu munculkan halaman utama, muat iklan, dan aktifkan Histats
     function triggerLoading() {
       document.getElementById('btn-start').style.display = 'none';
       document.getElementById('loading-box').style.display = 'block';
@@ -245,17 +245,16 @@
         document.getElementById('screen-landing').classList.remove('active');
         document.getElementById('screen-main').classList.add('active');
 
-        // PANGGIL IKLAN SETELAH HALAMAN AKTIF (Agar ukuran wadah iklan terbaca sempurna oleh sistem iklan)
+        // PANGGIL IKLAN & HISTATS KETIKA HALAMAN UTAMA BENAR-BENAR MUNCUL
         loadAdScript();
+        loadHistatsScript();
       }, 1000); 
     }
 
     function loadAdScript() {
       const slot1 = document.getElementById('ad-slot-1');
       if (slot1 && slot1.innerHTML === "") {
-        // Membuat elemen wrapper div dan script sesuai format yang diinginkan
         const wrapperDiv = document.createElement('div');
-        
         const s1 = document.createElement('script');
         s1.dataset.cfasync = "false";
         s1.async = true;
@@ -266,21 +265,23 @@
         slot1.appendChild(wrapperDiv);
       }
     }
-  </script>
 
-  <!-- HISTATS TRACKING SCRIPT -->
-  <script type="text/javascript">
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var _Hasync= _Hasync|| [];
+    // Fungsi agar Histats merekam data tepat saat pengunjung masuk ke konten utama
+    function loadHistatsScript() {
+      if (!window._HistatsLoaded) {
+        window._HistatsLoaded = true;
+        var _Hasync = _Hasync || [];
         _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
         _Hasync.push(['Histats.fasi', '1']);
         _Hasync.push(['Histats.track_hits', '']);
-        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-        hs.src = ('//s10.histats.com/js15_as.js');
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-      }, 1200);
-    });
+        
+        var hs = document.createElement('script'); 
+        hs.type = 'text/javascript'; 
+        hs.async = true;
+        hs.src = '//s10.histats.com/js15_as.js';
+        document.getElementsByTagName('head')[0].appendChild(hs);
+      }
+    }
   </script>
 </body>
 </html>
