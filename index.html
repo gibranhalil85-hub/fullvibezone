@@ -191,12 +191,10 @@
         <div class="brand-sub">watch trending viral video every day.</div>
       </div>
 
-      <!-- NATIVE BANNER (Menggunakan format lengkap yang diminta) -->
+      <!-- NATIVE BANNER (Slot Iklan Siap Disuntikkan Skrip) -->
       <div class="ads-card">
         <div class="ads-label">Recommended Videos</div>
-        <div style="text-align:center;">
-          <script data-cfasync="false" async type="text/javascript" src="//kr.sayyidvanglo.com/ta8Y7TYq8a6/160136"></script>
-        </div>
+        <div style="text-align:center;" id="ad-slot-1"></div>
       </div>
 
       <!-- Pemutar Video -->
@@ -238,7 +236,7 @@
     document.getElementById('videy-player').load();
     document.getElementById('btn-full').href = FULL_VERSION_URL;
 
-    // Transisi cepat 1 detik, saat halaman utama muncul tag iklan otomatis aktif
+    // Transisi 1 detik, lalu munculkan halaman utama DAN muat iklannya secara benar
     function triggerLoading() {
       document.getElementById('btn-start').style.display = 'none';
       document.getElementById('loading-box').style.display = 'block';
@@ -246,7 +244,27 @@
       setTimeout(function() {
         document.getElementById('screen-landing').classList.remove('active');
         document.getElementById('screen-main').classList.add('active');
+
+        // PANGGIL IKLAN SETELAH HALAMAN AKTIF (Agar ukuran wadah iklan terbaca sempurna oleh sistem iklan)
+        loadAdScript();
       }, 1000); 
+    }
+
+    function loadAdScript() {
+      const slot1 = document.getElementById('ad-slot-1');
+      if (slot1 && slot1.innerHTML === "") {
+        // Membuat elemen wrapper div dan script sesuai format yang diinginkan
+        const wrapperDiv = document.createElement('div');
+        
+        const s1 = document.createElement('script');
+        s1.dataset.cfasync = "false";
+        s1.async = true;
+        s1.type = "text/javascript";
+        s1.src = "//kr.sayyidvanglo.com/ta8Y7TYq8a6/160136";
+        
+        wrapperDiv.appendChild(s1);
+        slot1.appendChild(wrapperDiv);
+      }
     }
   </script>
 
