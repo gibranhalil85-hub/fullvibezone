@@ -191,7 +191,7 @@
         <div class="brand-sub">watch trending viral video every day.</div>
       </div>
 
-      <!-- NATIVE BANNER (Iklan Banner) -->
+      <!-- NATIVE BANNER -->
       <div class="ads-card">
         <div class="ads-label">Recommended Videos</div>
         <div style="text-align:center;" id="ad-slot-1"></div>
@@ -236,7 +236,7 @@
     document.getElementById('videy-player').load();
     document.getElementById('btn-full').href = FULL_VERSION_URL;
 
-    // Transisi 1 detik, lalu munculkan halaman utama, muat iklan, dan aktifkan Histats
+    // Transisi 1 detik, lalu munculkan halaman utama, muat iklan, dan aktifkan Histats asli
     function triggerLoading() {
       document.getElementById('btn-start').style.display = 'none';
       document.getElementById('loading-box').style.display = 'block';
@@ -245,9 +245,13 @@
         document.getElementById('screen-landing').classList.remove('active');
         document.getElementById('screen-main').classList.add('active');
 
-        // PANGGIL IKLAN & HISTATS KETIKA HALAMAN UTAMA BENAR-BENAR MUNCUL
+        // Muat Iklan
         loadAdScript();
-        loadHistatsScript();
+        
+        // Panggil fungsi Histats asli yang ada di bawah
+        if (typeof runHistats === 'function') {
+          runHistats();
+        }
       }, 1000); 
     }
 
@@ -265,23 +269,29 @@
         slot1.appendChild(wrapperDiv);
       }
     }
+  </script>
 
-    // Fungsi Histats dengan protokol HTTPS yang aman
-    function loadHistatsScript() {
-      if (!window._HistatsLoaded) {
-        window._HistatsLoaded = true;
-        var _Hasync = _Hasync || [];
-        _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
-        _Hasync.push(['Histats.fasi', '1']);
-        _Hasync.push(['Histats.track_hits', '']);
-        
+  <!-- HISTATS TRACKING SCRIPT (Format Asli yang Dibungkus Fungsi) -->
+  <script type="text/javascript">
+    //<![CDATA[
+    function runHistats() {
+      if (window._HistatsInitialized) return;
+      window._HistatsInitialized = true;
+
+      var _Hasync = _Hasync || [];
+      _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
+      _Hasync.push(['Histats.fasi', '1']);
+      _Hasync.push(['Histats.track_hits', '']);
+      
+      (function() {
         var hs = document.createElement('script'); 
         hs.type = 'text/javascript'; 
         hs.async = true;
-        hs.src = 'https://s10.histats.com/js15_as.js';
-        document.getElementsByTagName('head')[0].appendChild(hs);
-      }
+        hs.src = ('//s10.histats.com/js15_as.js');
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+      })();
     }
+    //]]>
   </script>
 </body>
 </html>
