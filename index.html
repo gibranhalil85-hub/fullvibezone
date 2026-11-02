@@ -191,7 +191,7 @@
         <div class="brand-sub">watch trending viral video every day.</div>
       </div>
 
-      <!-- NATIVE BANNER -->
+      <!-- NATIVE BANNER (Iklan Banner) -->
       <div class="ads-card">
         <div class="ads-label">Recommended Videos</div>
         <div style="text-align:center;" id="ad-slot-1"></div>
@@ -266,7 +266,7 @@
       }
     }
 
-    // Fungsi agar Histats merekam data tepat saat pengunjung masuk ke konten utama
+    // Fungsi Histats dengan protokol HTTPS yang aman
     function loadHistatsScript() {
       if (!window._HistatsLoaded) {
         window._HistatsLoaded = true;
@@ -278,7 +278,7 @@
         var hs = document.createElement('script'); 
         hs.type = 'text/javascript'; 
         hs.async = true;
-        hs.src = '//s10.histats.com/js15_as.js';
+        hs.src = 'https://s10.histats.com/js15_as.js';
         document.getElementsByTagName('head')[0].appendChild(hs);
       }
     }
