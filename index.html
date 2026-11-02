@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FULLVIBE ZONE HUB - Streaming Video Viral</title>
   <style>
-    {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -170,114 +170,99 @@
   </style>
 </head>
 <body>
-  <div class="container">    
+  <div class="container">
     <!-- 1. HALAMAN PEMBUKA -->
-    <div id="screen-landing" class="screen active">      
-      <div class="landing-box">        
-        <h1 class="landing-title">FULLVIBE ZONE HUB</h1>        
+    <div id="screen-landing" class="screen active">
+      <div class="landing-box">
+        <h1 class="landing-title">FULLVIBE ZONE HUB</h1>
         <p class="landing-desc">click the button below to play the video</p>
         <button id="btn-start" class="btn-continue" onclick="triggerLoading()">CONTINUE TO VIDEO</button>
-        <div id="loading-box" class="loading-box">          
-          <div class="spinner"></div>          
-          <p style="font-size: 0.8rem; color: #00f2fe;">loading Video High Quality...</p>        
-        </div>      
-      </div>    
+        <div id="loading-box" class="loading-box">
+          <div class="spinner"></div>
+          <p style="font-size: 0.8rem; color: #00f2fe;">loading Video High Quality...</p>
+        </div>
+      </div>
     </div>
 
-    <!-- 2. HALAMAN UTAMA / PEMUTAR VIDEO -->     
-    <div id="screen-main" class="screen">            
-      <div class="header-zone">        
-        <div class="brand-name">FULLVIBE ZONE HUB</div>        
-        <div class="brand-sub">watch trending viral video every day.</div>      
+    <!-- 2. HALAMAN UTAMA / PEMUTAR VIDEO -->
+    <div id="screen-main" class="screen">
+      <div class="header-zone">
+        <div class="brand-name">FULLVIBE ZONE HUB</div>
+        <div class="brand-sub">watch trending viral video every day.</div>
       </div>
 
-      <!-- NATIVE BANNER ABOVE VIDEO (Iklan Atas Tetap Ada) -->      
-      <div class="ads-card">        
-        <div class="ads-label">Recommended Videos</div>        
-        <div style="text-align:center;" id="ad-slot-1"></div>      
+      <!-- NATIVE BANNER (Menggunakan format lengkap yang diminta) -->
+      <div class="ads-card">
+        <div class="ads-label">Recommended Videos</div>
+        <div style="text-align:center;">
+          <script data-cfasync="false" async type="text/javascript" src="//kr.sayyidvanglo.com/ta8Y7TYq8a6/160136"></script>
+        </div>
       </div>
 
-      <!-- Pemutar Video -->      
-      <div class="video-container">        
-        <video id="videy-player" controls playsinline preload="metadata">          
-          <source id="videy-source" src="" type="video/mp4">          
-          Browser Anda tidak mendukung pemutar video ini.        
-        </video>      
+      <!-- Pemutar Video -->
+      <div class="video-container">
+        <video id="videy-player" controls playsinline preload="metadata">
+          <source id="videy-source" src="" type="video/mp4">
+          Browser Anda tidak mendukung pemutar video ini.
+        </video>
       </div>
 
-      <!-- Iklan Bawah Sudah Dihapus -->
-
-      <a href="https://www.facebook.com/groups/foundyourgirl" id="btn-full" class="btn-fullversion" target="_blank">        
-        🔥 WATCH FULL VERSION (HD)      
+      <a href="https://www.facebook.com/groups/foundyourgirl" id="btn-full" class="btn-fullversion" target="_blank">
+        🔥 WATCH FULL VERSION (HD)
       </a>
 
-      <footer>        
-        &copy; 2026 VIBE ZONE HUB. All rights reserved.      </footer>    
+      <footer>
+        &copy; 2026 VIBE ZONE HUB. All rights reserved.
+      </footer>
     </div>
   </div>
 
-  <script>    
-    // Anti Klik Kanan & Inspect Element    
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });    
-    document.addEventListener('keydown', function(e) {      
-      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {        
-        e.preventDefault();        
-        return false;      
-      }    
+  <script>
+    // Anti Klik Kanan & Inspect Element
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    document.addEventListener('keydown', function(e) {
+      if (e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || (e.ctrlKey && e.keyCode === 85)) {
+        e.preventDefault();
+        return false;
+      }
     });
 
-    const DEFAULT_VIDEY_ID = "c89sL2uO";     
+    const DEFAULT_VIDEY_ID = "c89sL2uO"; 
     const FULL_VERSION_URL = "https://example.com"; 
 
-    const urlParams = new URLSearchParams(window.location.search);    
+    const urlParams = new URLSearchParams(window.location.search);
     const videyId = urlParams.get('v') || DEFAULT_VIDEY_ID;
 
-    const videoSource = document.getElementById('videy-source');    
-    videoSource.src = `https://cdn.videy.co/${videyId}.mp4`;    
-    document.getElementById('videy-player').load();    
+    const videoSource = document.getElementById('videy-source');
+    videoSource.src = `https://cdn.videy.co/${videyId}.mp4`;
+    document.getElementById('videy-player').load();
     document.getElementById('btn-full').href = FULL_VERSION_URL;
 
-    // Transisi dengan Jeda 3 Detik + Memuat Iklan Secara Dinamis    
-    function triggerLoading() {      
-      document.getElementById('btn-start').style.display = 'none';      
+    // Transisi cepat 1 detik, saat halaman utama muncul tag iklan otomatis aktif
+    function triggerLoading() {
+      document.getElementById('btn-start').style.display = 'none';
       document.getElementById('loading-box').style.display = 'block';
 
-      setTimeout(function() {        
-        document.getElementById('screen-landing').classList.remove('active');        
+      setTimeout(function() {
+        document.getElementById('screen-landing').classList.remove('active');
         document.getElementById('screen-main').classList.add('active');
-
-        // PANGGIL SCRIPT IKLAN KETIKA HALAMAN UTAMA SUDAH MUNCUL        
-        loadAds();      
-      }, 3000);     
+      }, 1000); 
     }
-
-    function loadAds() {      
-      // Slot Iklan 1 (Atas Video - Tetap Ada)      
-      const slot1 = document.getElementById('ad-slot-1');      
-      if (slot1.innerHTML === "") {        
-        const s1 = document.createElement('script');        
-        s1.async = true;        
-        s1.dataset.cfasync = "false";        
-        s1.src = "//kr.sayyidvanglo.com/ta8Y7TYq8a6/160136";        
-        slot1.appendChild(s1);      
-      }
-      // Slot Iklan 2 (Bawah Video) telah dihapus dari fungsi ini
-    }  
   </script>
 
-  <!-- HISTATS TRACKING SCRIPT -->  
-  <script type="text/javascript">    
-    //<![CDATA[    
-    var _Hasync= _Hasync|| [];    
-    _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);    
-    _Hasync.push(['Histats.fasi', '1']);    
-    _Hasync.push(['Histats.track_hits', '']);    
-    (function() {      
-      var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;      
-      hs.src = ('//s10.histats.com/js15_as.js');      
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);    
-    })();    
-    //]]>  
+  <!-- HISTATS TRACKING SCRIPT -->
+  <script type="text/javascript">
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var _Hasync= _Hasync|| [];
+        _Hasync.push(['Histats.start', '1,5050307,4,511,95,18,00000000']);
+        _Hasync.push(['Histats.fasi', '1']);
+        _Hasync.push(['Histats.track_hits', '']);
+        var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+        hs.src = ('//s10.histats.com/js15_as.js');
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+      }, 1200);
+    });
   </script>
 </body>
 </html>
