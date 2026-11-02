@@ -170,7 +170,7 @@
   </style>
 </head>
 <body>
-  <div class="container">        
+  <div class="container">    
     <!-- 1. HALAMAN PEMBUKA -->
     <div id="screen-landing" class="screen active">      
       <div class="landing-box">        
@@ -184,14 +184,14 @@
       </div>    
     </div>
 
-    <!-- 2. HALAMAN UTAMA / PEMUTAR VIDEO -->    
+    <!-- 2. HALAMAN UTAMA / PEMUTAR VIDEO -->     
     <div id="screen-main" class="screen">            
       <div class="header-zone">        
         <div class="brand-name">FULLVIBE ZONE HUB</div>        
         <div class="brand-sub">watch trending viral video every day.</div>      
       </div>
 
-      <!-- NATIVE BANNER ABOVE VIDEO (Iklan Atas Baru) -->      
+      <!-- NATIVE BANNER ABOVE VIDEO (Iklan Atas Tetap Ada) -->      
       <div class="ads-card">        
         <div class="ads-label">Recommended Videos</div>        
         <div style="text-align:center;" id="ad-slot-1"></div>      
@@ -205,11 +205,7 @@
         </video>      
       </div>
 
-      <!-- NATIVE BANNER BELOW VIDEO -->      
-      <div class="ads-card">        
-        <div class="ads-label">Recommended Videos</div>        
-        <div style="text-align:center;" id="ad-slot-2"></div>      
-      </div>
+      <!-- Iklan Bawah Sudah Dihapus -->
 
       <a href="https://www.facebook.com/groups/foundyourgirl" id="btn-full" class="btn-fullversion" target="_blank">        
         🔥 WATCH FULL VERSION (HD)      
@@ -256,24 +252,16 @@
     }
 
     function loadAds() {      
-      // Slot Iklan 1 (Atas Video - Diperbarui)      
+      // Slot Iklan 1 (Atas Video - Tetap Ada)      
       const slot1 = document.getElementById('ad-slot-1');      
       if (slot1.innerHTML === "") {        
         const s1 = document.createElement('script');        
         s1.async = true;        
         s1.dataset.cfasync = "false";        
-        s1.src = "https://af.bundleunum.com/t9FYeP0oay2cRrF/151124";        
+        s1.src = "//gv.kaithiunmoldy.com/t1TPHKQTZMjtC5/160136";        
         slot1.appendChild(s1);      
       }
-
-      // Slot Iklan 2 (Bawah Video)      
-      const slot2 = document.getElementById('ad-slot-2');      
-      if (slot2.innerHTML === "") {        
-        const s2 = document.createElement('script');        
-        s2.async = true;        
-        s2.dataset.cfasync = "false";        
-        s2.src = "https://jj.cooleyshivery.com/t6BIHHqPVYvEPloTp/158394";        
-        slot2.appendChild(s2);      }    
+      // Slot Iklan 2 (Bawah Video) telah dihapus dari fungsi ini
     }  
   </script>
 
